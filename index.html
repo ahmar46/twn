@@ -1,178 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TWN Waitlist</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap"
-    rel="stylesheet">
-<style>
-  /* ===== Body & Aura ===== */
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: radial-gradient(circle at center, #ff8000, #ff4500, #000000);
-    display: flex;
-    justify-content: center; /* horizontal center */
-    align-items: center;     /* vertical center */
-    height: 100vh;
-    margin: 0;
-    color: white;
-    overflow: hidden;
-    position: fixed;
-  }
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
 
-  /* Aura Glow */
-  body::before {
-    content: "";
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    filter: blur(150px);
-    animation: pulse 4s infinite alternate;
-    z-index: 0;
-  }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at center, #ff8000, #ff4500, #000000);
+      min-height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+    }
 
-  @keyframes pulse {
-    from { opacity: 0.6; }
-    to { opacity: 1; }
-  }
+    body::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      filter: blur(150px);
+      animation: pulse 4s infinite alternate;
+      z-index: 0;
+    }
+    @keyframes pulse { from { opacity: 0.6; } to { opacity: 1; } }
 
-  /* ===== Card ===== */
-  .card {
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 30px;
-    padding: 40px;
-    text-align: center;
-    box-shadow: 0px 5px 30px rgba(255, 128, 0, 0.8);
-    max-width: 450px;
-    width: 90%;          /* scales on mobile */
-    position: relative;
-    z-index: 1;
-    margin: 0 auto;      /* horizontal center fallback */
-  }
+    .card {
+      background: rgba(0,0,0,0.7);
+      border-radius: 30px;
+      padding: 40px 24px;
+      text-align: center;
+      box-shadow: 0px 5px 30px rgba(255,128,0,0.8);
+      max-width: 450px;
+      width: 90vw;
+      position: relative;
+      z-index: 1;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
-  h1 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-    color: #ffcc00;
-    text-shadow: 0px 0px 15px #ff6600, 0px 0px 25px #ff3300;
-  }
+    h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+      color: #ffcc00;
+      text-shadow: 0px 0px 15px #ff6600, 0px 0px 25px #ff3300;
+    }
 
-  p {
-    font-size: 0.95rem;
-    margin-bottom: 20px;
-    color: #f0f0f0;
-  }
+    p {
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      color: #f0f0f0;
+    }
 
-  /* ===== Form ===== */
-  .form {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 15px;
-  }
+    form {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      flex-wrap: nowrap;
+      margin-bottom: 15px;
+      gap: 0;
+    }
 
-  input[type="email"] {
-    padding: 12px;
-    border: none;
-    border-radius: 10px 0 0 10px;
-    outline: none;
-    width: 65%;
-    font-size: 0.9rem;
-  }
+    input[type="email"] {
+      padding: 12px;
+      border: none;
+      border-radius: 10px 0 0 10px;
+      outline: none;
+      width: 65%;
+      font-size: 0.9rem;
+      min-width: 100px;
+      box-sizing: border-box;
+    }
 
-  button {
-    background: linear-gradient(45deg, #ffcc00, #ff6600);
-    color: black;
-    border: none;
-    padding: 12px 18px;
-    border-radius: 0 10px 10px 0;
-    cursor: pointer;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: transform 0.2s ease-in-out;
-  }
+    button {
+      background: linear-gradient(45deg, #ffcc00, #ff6600);
+      color: black;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 0 10px 10px 0;
+      cursor: pointer;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: transform 0.2s ease-in-out;
+      min-width: 90px;
+      box-sizing: border-box;
+    }
 
-  button:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 0px 15px #ff6600;
-  }
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 0px 15px #ff6600;
+    }
 
-  /* ===== Joined Text ===== */
-  .joined {
-    font-size: 0.85rem;
-    margin: 12px 0;
-    color: #ffcc00;
-  }
+    .joined {
+      font-size: 0.85rem;
+      margin: 12px 0;
+      color: #ffcc00;
+    }
 
- /* Timer - keep everything in one row */
-.timer {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: nowrap;       /* prevent wrapping */
-  gap: 8px;
-  margin-top: 20px;
-}
+    .timer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 8px;
+      margin-top: 20px;
+      width: 100%;
+    }
 
-.time-box {
-  flex: 1 1 0;             /* grow and shrink equally */
-  min-width: 0;            /* important for shrinking */
-  text-align: center;
-  font-family: 'Press Start 2P', cursive;
-  color: #fff;
-}
+    .time-box {
+      flex: 1 1 0;
+      min-width: 0;
+      text-align: center;
+      font-family: 'Press Start 2P', cursive;
+      color: #fff;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
 
-.time-box span {
-  display: block;
-  font-size: 1.1rem;       /* reduce slightly on small screens */
-  font-weight: bold;
-  color: #ffcc00;
-  text-shadow: 0px 0px 10px #ff6600;
-}
+    .time-box span {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #ffcc00;
+      text-shadow: 0px 0px 10px #ff6600;
+      white-space: nowrap;
+      letter-spacing: 2px;
+    }
 
-  /* Mobile tweaks (≤480px) */
-@media (max-width: 480px) {
-  .timer {
-    gap: 4px;
-  }
-  .time-box span {
-    font-size: 0.9rem;     /* smaller so it fits */
-  }
-}
-
-  /* ===== Tablet (481px–1024px) ===== */
-  @media (min-width: 481px) and (max-width: 1024px) {
-    .card { padding: 30px; max-width: 80%; }
-    h1 { font-size: 1.5rem; }
-    p { font-size: 0.9rem; }
-    input[type="email"] { width: 70%; padding: 10px; }
-    button { padding: 10px 15px; }
-    .time-box span { font-size: 1.1rem; }
-  }
-</style>
-
-
+    @media (max-width: 480px) {
+      .card { max-width: 98vw; padding: 18px 4px; }
+      h1 { font-size: 1.05rem; }
+      p { font-size: 0.78rem; }
+      form { gap: 0; }
+      input[type="email"] { width: 61%; padding: 10px; border-radius: 10px 0 0 10px; }
+      button { padding: 10px 12px; border-radius: 0 10px 10px 0; font-size: 0.82rem; }
+      .timer { gap: 3px; }
+      .time-box span { font-size: 0.81rem; }
+    }
+    @media (min-width: 481px) and (max-width: 1024px) {
+      .card { padding: 30px; max-width: 80vw; }
+      h1 { font-size: 1.35rem; }
+      p { font-size: 0.9rem; }
+      input[type="email"] { width: 70%; padding: 11px; }
+      button { padding: 11px 16px; }
+      .time-box span { font-size: 1.01rem; }
+    }
+  </style>
 </head>
-
 <body>
   <div class="card">
     <h1>Join the Dojo ⚡</h1>
     <p>Gain exclusive early access to our anime-themed coding platform and stay informed about launch updates.</p>
-
-    <div class="form">
+    <form>
       <input type="email" placeholder="Enter your email">
-      <button>Get Notified</button>
-    </div>
-
+      <button type="submit">Get Notified</button>
+    </form>
     <div class="joined">~ 1k+ Nerds already joined</div>
-
     <div class="timer">
       <div class="time-box"><span id="days">0</span>D</div>
       <div class="time-box"><span id="hours">0</span>H</div>
@@ -180,53 +183,43 @@
       <div class="time-box"><span id="seconds">0</span>S</div>
     </div>
   </div>
-
   <script>
-    // Set the launch date (example: 31 Dec 2025)
+    // Timer code – unchanged
     const launchDate = new Date("Dec 31, 2025 00:00:00").getTime();
-
     const timer = setInterval(function () {
       const now = new Date().getTime();
       const distance = launchDate - now;
-
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
       document.getElementById("days").innerText = days;
       document.getElementById("hours").innerText = hours;
       document.getElementById("minutes").innerText = minutes;
       document.getElementById("seconds").innerText = seconds;
-
       if (distance < 0) {
         clearInterval(timer);
         document.querySelector(".timer").innerHTML = "The Dojo Gates Are Open 🚀";
       }
     }, 1000);
 
-    // ✅ Google Sheets Integration
+    // Google Sheets integration
     const form = document.querySelector("form");
     const input = document.querySelector("input[type='email']");
-
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const email = input.value;
-
       if (email === "") return alert("Enter your email!");
-
-      await fetch("https://script.google.com/macros/s/AKfycbysfs7fNBF_vJM-NeqRl90ZcMpdHpBL7mASNPRwSSPA0lDRt6RVb_jCGrTB7mSuJAw/exec", {   // ⚡ replace this with your deployed script URL
+      await fetch("https://script.google.com/macros/s/AKfycbysfs7fNBF_vJM-NeqRl90ZcMpdHpBL7mASNPRwSSPA0lDRt6RVb_jCGrTB7mSuJAw/exec", {
         method: "POST",
         body: JSON.stringify({ email }),
         headers: {
           "Content-Type": "application/json",
         },
       });
-
       alert("✅ You’re on the waitlist!");
       input.value = "";
     });
   </script>
 </body>
-
 </html>
