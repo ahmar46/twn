@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TWN Waitlist</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet">
   <style>
-    html, body {
+    html,
+    body {
       height: 100%;
       margin: 0;
       padding: 0;
@@ -14,7 +17,7 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at center, #ff8000, #ff4500, #000000);
+      background: radial-gradient(circle at center, #ff8000, #7a2a0d, #000000);
       min-height: 100vh;
       width: 100vw;
       overflow: hidden;
@@ -29,7 +32,7 @@
       position: absolute;
       width: 600px;
       height: 600px;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 50%;
       top: 50%;
       left: 50%;
@@ -38,14 +41,23 @@
       animation: pulse 4s infinite alternate;
       z-index: 0;
     }
-    @keyframes pulse { from { opacity: 0.6; } to { opacity: 1; } }
+
+    @keyframes pulse {
+      from {
+        opacity: 0.6;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
 
     .card {
-      background: rgba(0,0,0,0.7);
+      background: rgba(0, 0, 0, 0.7);
       border-radius: 30px;
       padding: 40px 24px;
       text-align: center;
-      box-shadow: 0px 5px 30px rgba(255,128,0,0.8);
+      box-shadow: 0px 5px 30px rgba(255, 128, 0, 0.8);
       max-width: 450px;
       width: 90vw;
       position: relative;
@@ -148,34 +160,84 @@
     }
 
     @media (max-width: 480px) {
-      .card { max-width: 98vw; padding: 18px 4px; }
-      h1 { font-size: 1.05rem; }
-      p { font-size: 0.78rem; }
-      form { gap: 0; }
-      input[type="email"] { width: 61%; padding: 10px; border-radius: 10px 0 0 10px; }
-      button { padding: 10px 12px; border-radius: 0 10px 10px 0; font-size: 0.82rem; }
-      .timer { gap: 3px; }
-      .time-box span { font-size: 0.81rem; }
+      .card {
+        max-width: 98vw;
+        padding: 18px 4px;
+      }
+
+      h1 {
+        font-size: 1.05rem;
+      }
+
+      p {
+        font-size: 0.78rem;
+      }
+
+      form {
+        gap: 0;
+      }
+
+      input[type="email"] {
+        width: 61%;
+        padding: 10px;
+        border-radius: 10px 0 0 10px;
+      }
+
+      button {
+        padding: 10px 12px;
+        border-radius: 0 10px 10px 0;
+        font-size: 0.82rem;
+      }
+
+      .timer {
+        gap: 3px;
+      }
+
+      .time-box span {
+        font-size: 0.81rem;
+      }
     }
+
     @media (min-width: 481px) and (max-width: 1024px) {
-      .card { padding: 30px; max-width: 80vw; }
-      h1 { font-size: 1.35rem; }
-      p { font-size: 0.9rem; }
-      input[type="email"] { width: 70%; padding: 11px; }
-      button { padding: 11px 16px; }
-      .time-box span { font-size: 1.01rem; }
+      .card {
+        padding: 30px;
+        max-width: 80vw;
+      }
+
+      h1 {
+        font-size: 1.35rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+
+      input[type="email"] {
+        width: 70%;
+        padding: 11px;
+      }
+
+      button {
+        padding: 11px 16px;
+      }
+
+      .time-box span {
+        font-size: 1.01rem;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="card">
-    <h1>Join the Dojo ⚡</h1>
-    <p>Gain exclusive early access to our anime-themed coding platform and stay informed about launch updates.</p>
+    <h1>The Dojo Opens Soon</h1>
+    <p>Code like a warrior & earn your rank.
+      <br>Join the wait list today.</p>
     <form>
       <input type="email" placeholder="Enter your email">
       <button type="submit">Get Notified</button>
     </form>
-    <div class="joined">~ 1k+ Nerds already joined</div>
+    <div class="joined">~ 100+ Nerds already joined</div>
     <div class="timer">
       <div class="time-box"><span id="days">0</span>D</div>
       <div class="time-box"><span id="hours">0</span>H</div>
@@ -222,4 +284,5 @@
     });
   </script>
 </body>
+
 </html>
