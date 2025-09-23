@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TWN Waitlist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet">
+<style>
+  /* ===== Body & Aura ===== */
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at center, #ff8000, #ff4500, #000000);
+    display: flex;
+    justify-content: center; /* horizontal center */
+    align-items: center;     /* vertical center */
+    height: 100vh;
+    margin: 0;
+    color: white;
+    overflow: hidden;
+    position: relative;      /* so pseudo-element doesn't affect card */
+  }
+
+  /* Aura Glow */
+  body::before {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(150px);
+    animation: pulse 4s infinite alternate;
+    z-index: 0;
+  }
+
+  @keyframes pulse {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
+  }
+
+  /* ===== Card ===== */
+  .card {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 30px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0px 5px 30px rgba(255, 128, 0, 0.8);
+    max-width: 450px;
+    width: 90%;          /* scales on mobile */
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;      /* horizontal center fallback */
+  }
+
+  h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: #ffcc00;
+    text-shadow: 0px 0px 15px #ff6600, 0px 0px 25px #ff3300;
+  }
+
+  p {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    color: #f0f0f0;
+  }
+
+  /* ===== Form ===== */
+  .form {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+  }
+
+  input[type="email"] {
+    padding: 12px;
+    border: none;
+    border-radius: 10px 0 0 10px;
+    outline: none;
+    width: 65%;
+    font-size: 0.9rem;
+  }
+
+  button {
+    background: linear-gradient(45deg, #ffcc00, #ff6600);
+    color: black;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px #ff6600;
+  }
+
+  /* ===== Joined Text ===== */
+  .joined {
+    font-size: 0.85rem;
+    margin: 12px 0;
+    color: #ffcc00;
+  }
+
+  /* ===== Timer ===== */
+  .timer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .time-box {
+    text-align: center;
+    flex: 1;
+    font-family: 'Press Start 2P', cursive;
+    color: #fff;
+    min-width: 60px;
+    margin: 5px 0;
+  }
+
+  .time-box span {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffcc00;
+    text-shadow: 0px 0px 10px #ff6600;
+  }
+
+  /* ===== Mobile (≤480px) ===== */
+  @media (max-width: 480px) {
+    h1 { font-size: 1.4rem; }
+    p { font-size: 0.85rem; }
+    .card { padding: 20px; width: 95%; }
+    input[type="email"], button {
+      width: 100%;
+      border-radius: 10px;
+      margin: 5px 0;
+    }
+    .timer { justify-content: center; }
+    .time-box { flex: 0 0 48%; }
+  }
+
+  /* ===== Tablet (481px–1024px) ===== */
+  @media (min-width: 481px) and (max-width: 1024px) {
+    .card { padding: 30px; max-width: 80%; }
+    h1 { font-size: 1.5rem; }
+    p { font-size: 0.9rem; }
+    input[type="email"] { width: 70%; padding: 10px; }
+    button { padding: 10px 15px; }
+    .time-box span { font-size: 1.1rem; }
+  }
+</style>
+
+
+</head>
+
+<body>
+  <div class="card">
+    <h1>Join the Dojo ⚡</h1>
+    <p>Gain exclusive early access to our anime-themed coding platform and stay informed about launch updates.</p>
+
+    <div class="form">
+      <input type="email" placeholder="Enter your email">
+      <button>Get Notified</button>
+    </div>
+
+    <div class="joined">~ 1k+ Nerds already joined</div>
+
+    <div class="timer">
+      <div class="time-box"><span id="days">0</span>D</div>
+      <div class="time-box"><span id="hours">0</span>H</div>
+      <div class="time-box"><span id="minutes">0</span>M</div>
+      <div class="time-box"><span id="seconds">0</span>S</div>
+    </div>
+  </div>
+
+  <script>
+    // Set the launch date (example: 31 Dec 2025)
+    const launchDate = new Date("Dec 31, 2025 00:00:00").getTime();
+
+    const timer = setInterval(function () {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+
+      if (distance < 0) {
+        clearInterval(timer);
+        document.querySelector(".timer").innerHTML = "The Dojo Gates Are Open 🚀";
+      }
+    }, 1000);
+
+    // ✅ Google Sheets Integration
+    const form = document.querySelector("form");
+    const input = document.querySelector("input[type='email']");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = input.value;
+
+      if (email === "") return alert("Enter your email!");
+
+      await fetch("https://script.google.com/macros/s/AKfycbysfs7fNBF_vJM-NeqRl90ZcMpdHpBL7mASNPRwSSPA0lDRt6RVb_jCGrTB7mSuJAw/exec", {   // ⚡ replace this with your deployed script URL
+        method: "POST",
+        body: JSON.stringify({ email }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      alert("✅ You’re on the waitlist!");
+      input.value = "";
+    });
+  </script>
+</body>
+
+</html>
