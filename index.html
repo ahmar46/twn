@@ -140,23 +140,31 @@
     }
 
     .time-box {
-      flex: 1 1 0;
-      min-width: 0;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       font-family: 'Press Start 2P', cursive;
       color: #fff;
       font-size: 0.85rem;
       white-space: nowrap;
+      gap: 4px;
+      /* add spacing between number and unit */
     }
 
     .time-box span {
-      display: block;
       font-size: 1.1rem;
       font-weight: bold;
       color: #ffcc00;
       text-shadow: 0px 0px 10px #ff6600;
-      white-space: nowrap;
       letter-spacing: 2px;
+    }
+
+    .time-box .unit {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0px 0px 10px #ffcc00;
+      margin-left: 2px;
     }
 
     @media (max-width: 480px) {
@@ -190,13 +198,26 @@
       }
 
       .timer {
-        gap: 3px;
+        gap: 1vw;
+        padding: 0 5vw;
+        width: fit-content;
+        margin: 0 auto;
       }
 
-      .time-box span {
-        font-size: 0.81rem;
+      .time-box {
+        min-width: 48px;
+        max-width: 54px;
+        flex: 0 0 54px;
+        font-size: 1.1rem;
+        justify-content: center;
+      }
+
+      .time-box span,
+      .time-box .unit {
+        font-size: 1.09rem;
       }
     }
+
 
     @media (min-width: 481px) and (max-width: 1024px) {
       .card {
@@ -232,7 +253,8 @@
   <div class="card">
     <h1>The Dojo Opens Soon</h1>
     <p>Code like a warrior & earn your rank.
-      <br>Join the wait list today.</p>
+      <br>Join the wait list today.
+    </p>
     <form>
       <input type="email" placeholder="Enter your email">
       <button type="submit">Get Notified</button>
