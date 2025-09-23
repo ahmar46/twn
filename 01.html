@@ -88,10 +88,11 @@
     <h1>Join the waitlist</h1>
     <p>Gain exclusive early access to our software and stay informed about launch updates</p>
     
-    <div class="form">
-      <input type="email" placeholder="your@email.com">
-      <button>Get Notified</button>
-    </div>
+    <!-- ✅ Wrapped input + button inside <form> -->
+    <form class="form">
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit">Get Notified</button>
+    </form>
 
     <div class="joined">~ 1k+ People already joined</div>
 
@@ -104,7 +105,7 @@
   </div>
 
   <script>
-    // Set the launch date (example: 31 Dec 2025)
+    // Countdown Timer
     const launchDate = new Date("Dec 31, 2025 00:00:00").getTime();
 
     const timer = setInterval(function(){
@@ -126,6 +127,28 @@
         document.querySelector(".timer").innerHTML = "We are live!";
       }
     }, 1000);
+
+    // ✅ Google Sheets Integration
+    const form = document.querySelector("form");
+    const input = document.querySelector("input[type='email']");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = input.value;
+
+      if(email === "") return alert("Enter your email!");
+
+      await fetch("https://script.google.com/macros/s/AKfycbysfs7fNBF_vJM-NeqRl90ZcMpdHpBL7mASNPRwSSPA0lDRt6RVb_jCGrTB7mSuJAw/exec", {   // ⚡ replace this with your deployed script URL
+        method: "POST",
+        body: JSON.stringify({ email }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      alert("✅ You’re on the waitlist!");
+      input.value = "";
+    });
   </script>
 </body>
 </html>
