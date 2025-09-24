@@ -71,7 +71,7 @@
 
     h1 {
       font-family: 'Press Start 2P', cursive;
-      font-size: 1.6rem;
+      font-size: 2.6rem;
       margin-bottom: 15px;
       color: #ffcc00;
       text-shadow: 0px 0px 15px #ff6600, 0px 0px 25px #ff3300;
@@ -288,22 +288,15 @@
     }, 1000);
 
     // Google Sheets integration
-    const form = document.querySelector("form");
-    const input = document.querySelector("input[type='email']");
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const email = input.value;
-      if (email === "") return alert("Enter your email!");
-      await fetch("https://script.google.com/macros/s/AKfycbxdF9rChE_JExUcxAJrNYRSgntrREvNS1yh8RLwJPWQbtlvMpLXEj9F5XqERp830Q/exec", {
-        method: "POST",
-        body: JSON.stringify({ email }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      alert("✅ You’re on the waitlist!");
-      input.value = "";
+    await fetch("https://script.google.com/macros/s/AKfycbxSH_zsh83TiyLKRuHvkmxIpa6dknxKOHb5AZiuiYqYen-bFIEe8YymgPu86zeGO_s/exec", {
+      method: "POST",
+      body: JSON.stringify({ email }),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
+    alert("Thank you for joining the waitlist!");
+    document.querySelector("form").reset();
   </script>
 </body>
 
