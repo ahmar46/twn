@@ -288,14 +288,13 @@
     }, 1000);
 
     // Google Sheets integration
-    fetch("https://script.google.com/macros/s/AKfycbxSH_zsh83TiyLKRuHvkmxIpa6dknxKOHb5AZiuiYqYen-bFIEe8YymgPu86zeGO_s/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbwVCssneAM4x6wYubji_5HlNC6kniz5TWOLyAZKqlK_e5Bsl9u3OIviP88mAnzUKzI/exec", {
       method: "POST",
       body: JSON.stringify({ email: "example@email.com" }),
       headers: {
         "Content-Type": "application/json"
       }
     });
-    alert("Thank you for joining the waitlist!");
   </script>
 </body>
 
