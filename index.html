@@ -255,12 +255,27 @@
     <p>Code like a warrior & earn your rank.
       <br>Join the wait list today.
     </p>
-    <form method="post"
-      action="https://script.google.com/macros/s/AKfycbyekOvl08hkW4WWxDOhR-P66tBgndGjnIi0hYFD5YV7y_8khgChHz79R5DLBFMFlyo/exec"
-      onsubmit="return submitForm(this);">
-      <input type="email" placeholder="Enter your email">
+    <form id="waitlistForm">
+      <input type="email" name="email" placeholder="your@email.com" required>
       <button type="submit">Get Notified</button>
     </form>
+
+    <script>
+      const scriptURL = "https://script.google.com/macros/s/AKfycbwHZLhNE3vOnSRsf_fO-tIlE-Z5OBrsl0vfkgEH7hJhAvaf3ln2MBl2t3kecxTEMlc/exec"; // paste your URL here
+      const form = document.getElementById("waitlistForm");
+
+      form.addEventListener("submit", e => {
+        e.preventDefault();
+        let formData = new FormData(form);
+
+        fetch(scriptURL, { method: "POST", body: formData })
+          .then(response => alert("🎉 You're on the waitlist!"))
+          .catch(error => alert("❌ Something went wrong."));
+
+        form.reset();
+      });
+    </script>
+
     <div id="message" style="color:#ffcc00; margin-top: 10px;"></div>
     <div class="joined">~ 100+ Nerds already joined</div>
     <div class="timer">
@@ -290,25 +305,7 @@
       }
     }, 1000);
 
-    // Google Sheets form submission
-    function submitForm(form) {
-      var formData = new FormData(form);
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", form.action, true);
-      xhr.onload = function () {
-        if (xhr.status === 200 && xhr.responseText === "Success") {
-          document.getElementById("message").innerText = "Thank you for joining!";
-          form.reset();
-        } else {
-          document.getElementById("message").innerText = "Something went wrong, please try again.";
-        }
-      };
-      xhr.onerror = function () {
-        document.getElementById("message").innerText = "An error occurred, please try again.";
-      };
-      xhr.send(formData);
-      return false; // Prevent default form submit
-    }
+
   </script>
 </body>
 
